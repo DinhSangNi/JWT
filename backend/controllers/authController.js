@@ -117,7 +117,7 @@ const authController = {
 
       // create html text
       const html = `Xin vui lòng click vào link dưới đây để thay đổi password của bạn. Link này sẽ hết hạn sau 15 phút kể từ bây giờ.
-    <a href= ${process.env.URL_CLIENT}/resetpassword/${user._id}/${newtoken}>Click here</a>`;
+      <a href= ${process.env.URL_CLIENT}/resetpassword/${user._id}/${newtoken}>Click here</a>`;
 
       // send mail 
       const data = {
@@ -139,11 +139,11 @@ const authController = {
       const token = req.params.token;
       jwt.verify(token, process.env.JWT_ACCESS_KEY, (err, decodedInfo) => {
         if (err) {
-          res.status(403).json({ success: false, message: "Token is expired ." });
+          res.json({ success: false, message: "Token is expired ." });
         }
         else {
           if (!req.body.password) {
-            return res.status(400).json({ message: 'Missing password' });
+            return res.status(400).json({ message: 'Missing password .' });
           }
 
           const updatePassword = async () => {
